@@ -59,6 +59,7 @@ steps:
 * `format` — Required — String — Format of the file. Possible values: `"junit"`, `"json"`
 * `api-token-env-name` — Optional — String — Name of the environment variable that contains the Test Analytics API token. Default value: `"BUILDKITE_ANALYTICS_TOKEN"`
 * `timeout` — Optional — Number — Maximum number of seconds to wait for each file to upload before timing out. Default value: `30`
+* `search-root` — Optional — String — Relative path to start searching for files. Default value: `.`
 * `debug` — Optional — Boolean — Print debug information to the build output. Default value: `false`. Can also be enabled with the environment variable `BUILDKITE_ANALYTICS_DEBUG_ENABLED`.
 
 <!-- * `artifact` — Optional — Boolean — Search for the files as build artifacts. Default value: `false` -->

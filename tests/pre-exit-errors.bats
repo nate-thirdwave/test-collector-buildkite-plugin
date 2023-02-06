@@ -44,5 +44,16 @@ setup() {
   run "$PWD/hooks/pre-exit"
 
   assert_failure
-  assert_output --partial "No files found matching 'file.xml'"
+  assert_output --partial "No files found matching 'file.xml' in '.' (abspath: /"
+}
+
+@test "Errors if no file is found with non-existant search root" {
+  export BUILDKITE_ANALYTICS_TOKEN='abc'
+  export BUILDKITE_PLUGIN_TEST_COLLECTOR_FILES='file.xml'
+  export BUILDKITE_PLUGIN_TEST_COLLECTOR_FORMAT='junit'
+  export BUILDKITE_PLUGIN_TEST_COLLECTOR_SEARCH_ROOT='nonexistant-subdirectory'
+  run "$PWD/hooks/pre-exit"
+
+  assert_failure
+  assert_output --partial "No files found matching 'file.xml' in './nonexistant-subdirectory' (abspath: <search_root not found>)"
 }
